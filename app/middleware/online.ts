@@ -1,13 +1,13 @@
 import { Context } from "egg"
 
 export default async function(ctx: Context, next: ()=> Promise<any>){
-    if( ctx.session.id ){
-        await next()
-    }
-		else {
-			ctx.body = {
-				success: false,
-				error: '你未登录'
-			}
+	if( ctx.session.id ){
+			await next()
+	}
+	else {
+		ctx.body = {
+			success: false,
+			error: '你未登录'
 		}
+	}
 }

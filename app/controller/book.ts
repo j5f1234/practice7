@@ -28,4 +28,38 @@ export default class BookController extends Controller {
       }
     }
   }
+
+	public async getBookInfo() {
+		const {ctx } = this
+		const{ bookId,page,limit} = ctx.query
+		let bookId2 = parseInt( bookId )
+		let page2 = parseInt(page)
+		let limit2 = parseInt(limit)
+		const data = await ctx.model.Borrow.findAndCountAll({
+				where: { bookId: bookId2 },
+				limit: limit2,
+				offset: limit2 * (page2-1),
+				include: [{
+					model: ctx.model.User,
+					as: 'user',
+					attributes: ['name'],
+					required: false
+				}]
+			}
+		)
+		ctx.body = {
+			success: true,
+			data
+		}
+	}
+
+	public async delete(){
+		const {ctx} = this
+		const{id} = ctx.params
+		let id2 = parseInt(id)
+		ctx.model.Borrow.destroy({where:{id:id2}})
+		ctx.body = {
+			success: true,
+		}
+	}
 } 

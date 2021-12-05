@@ -6,6 +6,8 @@ class User extends Model{
     name: string
     createdAt: Date
     updatedAt: Date
+
+    static associate: ()=>any
 }
 
 export default ( app: Application) => {
@@ -19,5 +21,9 @@ export default ( app: Application) => {
         modelName: 'users',
         underscored: true
     })
+
+    User.associate = ()=>{
+        app.model.User.hasMany( app.model.Borrow, {foreignKey: 'userId' ,as: 'borrow'})
+    }
     return User
 }
