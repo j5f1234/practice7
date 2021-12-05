@@ -13,8 +13,8 @@ class Borrow extends Model{
 export default ( app: Application) => {
     Borrow.init({
         id: { type: INTEGER, primaryKey: true, autoIncrement: true},
-        book_id: INTEGER,
-        user_id: INTEGER,
+        bookId: INTEGER,
+        userId: INTEGER,
         number: INTEGER,
         createdAt: DATE,
         updatedAt: DATE

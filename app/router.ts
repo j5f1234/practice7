@@ -10,4 +10,6 @@ export default (app: Application) => {
   router.delete('/api/logout', online, controller.user.logout)
   router.put('/api/changeinfo',online, controller.user.changeInfo)
   router.get('/api/getinfo',online,controller.user.getInfo)
+  router.post('/api/addnew',online,controller.book.addNew)
+  router.post('/api/borrow',online,controller.book.borrow)
 };
